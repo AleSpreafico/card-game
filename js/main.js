@@ -3,12 +3,23 @@ const cards = document.querySelectorAll('.card');
 let firstCard = null,
     secondCard = null;
 
+// const flip = () => {
+//     if (this === firstCard) return;
+
+
+//     if (firstCard === null) {
+//         this.classList.add('flip');
+//         firstCard = this;
+//     } else if (secondCard === null) {
+//         this.classList.add('flip');
+//         secondCard = this;
+//         checkScore();
+//     }
+// }
+
 function flip() {
-
-
+    
     if (this === firstCard) return;
-
-
     if (firstCard === null) {
         this.classList.add('flip');
         firstCard = this;
@@ -19,7 +30,8 @@ function flip() {
     }
 }
 
-function checkScore() {
+
+const checkScore = () => {
     if (firstCard.dataset.id === secondCard.dataset.id) {
         deleteCards();
         return;
@@ -28,13 +40,13 @@ function checkScore() {
     setTimeout(unflip, 1000);
 }
 
-function unflip() {
+const unflip = () => {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
     reset();
 }
 
-function deleteCards() {
+const deleteCards = (params) => {
     firstCard.classList.add('disabled');
     firstCard.removeEventListener('click', flip);
     secondCard.classList.add('disabled');
@@ -42,15 +54,15 @@ function deleteCards() {
     reset();
 }
 
-function reset() {
+const reset = () => {
     firstCard = null;
     secondCard = null;
 }
 
-function shuffle() {
+const shuffle = () => {
     cards.forEach((card) => {
-      let random = Math.floor(Math.random() * 12);
-      card.style.order = random;
+        let random = Math.floor(Math.random() * 12);
+        card.style.order = random;
     });
 }
 
